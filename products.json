@@ -1,0 +1,136 @@
+[
+  {
+    "id": "1",
+    "name": "Canapé Oslo",
+    "category": "salon",
+    "price": 125000,
+    "description": "Canapé moderne en tissu velours, design scandinave épuré. Confort exceptionnel avec assise profonde et accoudoirs larges. Parfait pour votre salon.",
+    "material": "Velours premium, structure en bois massif",
+    "dimensions": "240 × 95 × 85 cm",
+    "colors": ["#D4C5A9","#8B7355","#4A4A4A","#C4B8A0"],
+    "colorNames": ["Beige","Noyer","Anthracite","Lin"],
+    "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=600&fit=crop&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c3d1c224?w=800&h=600&fit=crop&q=80"
+    ],
+    "featured": true
+  },
+  {
+    "id": "2",
+    "name": "Table Atlas",
+    "category": "salle-a-manger",
+    "price": 65000,
+    "description": "Table à manger en bois de noyer, lignes contemporaines et pieds en métal noir. Accueille jusqu'à 6 convives avec élégance.",
+    "material": "Bois de noyer, pieds en acier laqué noir",
+    "dimensions": "160 × 90 × 75 cm",
+    "colors": ["#5C4033","#2D2D2D","#8B7355"],
+    "colorNames": ["Noyer","Noir","Chêne"],
+    "image": "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&h=600&fit=crop&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1533090481720-856c8e3a8e7b?w=800&h=600&fit=crop&q=80"
+    ],
+    "featured": true
+  },
+  {
+    "id": "3",
+    "name": "Lit Sahara",
+    "category": "chambre",
+    "price": 95000,
+    "description": "Lit double capitonné avec tête de lit haute en tissu lin. Design chaleureux et intemporel pour des nuits paisibles.",
+    "material": "Tissu lin, structure en bois de hêtre",
+    "dimensions": "200 × 180 × 120 cm",
+    "colors": ["#C4B8A0","#6B6B6B","#E8D5B7"],
+    "colorNames": ["Lin","Gris perle","Crème"],
+    "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=600&fit=crop&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1522771739844-745fc6d6e1d3?w=800&h=600&fit=crop&q=80"
+    ],
+    "featured": true
+  },
+  {
+    "id": "4",
+    "name": "Bureau Focus",
+    "category": "bureau",
+    "price": 42000,
+    "description": "Bureau minimaliste avec tiroirs intégrés et passage de câbles. Travaillez chez vous avec style et organisation.",
+    "material": "MDF haute densité, pieds en métal",
+    "dimensions": "120 × 60 × 75 cm",
+    "colors": ["#F5F0E8","#2D2D2D","#D4C5A9"],
+    "colorNames": ["Blanc mat","Noir","Chêne clair"],
+    "image": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&h=600&fit=crop&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1595515106969-1ce295c9c9d0?w=800&h=600&fit=crop&q=80"
+    ],
+    "featured": false
+  },
+  {
+    "id": "5",
+    "name": "Étagère Casbah",
+    "category": "salon",
+    "price": 35000,
+    "description": "Étagère modulaire ouverte, 5 niveaux. Rangez vos livres et objets décoratifs avec style. Design asymétrique contemporain.",
+    "material": "Bois de pin traité, structure métallique",
+    "dimensions": "90 × 30 × 180 cm",
+    "colors": ["#D4C5A9","#2D2D2D","#8B7355"],
+    "colorNames": ["Naturel","Noir","Noyer"],
+    "image": "https://images.unsplash.com/photo-1594620308379-5fa4066b4f6f?w=800&h=600&fit=crop&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1594620308379-5fa4066b4f6f?w=800&h=600&fit=crop&q=80"
+    ],
+    "featured": false
+  },
+  {
+    "id": "6",
+    "name": "Fauteuil Tassili",
+    "category": "salon",
+    "price": 38000,
+    "description": "Fauteuil accent en velours avec dossier courbé. Pièce maîtresse pour votre salon, alliant confort et caractère.",
+    "material": "Velours, pieds en bois de hêtre",
+    "dimensions": "75 × 80 × 90 cm",
+    "colors": ["#4A6741","#8B4513","#2D2D2D","#B8956A"],
+    "colorNames": ["Sauge","Cognac","Noir","Or"],
+    "image": "https://images.unsplash.com/photo-1580480055273-228b6c6d6c28?w=800&h=600&fit=crop&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1580480055273-228b6c6d6c28?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1506431675593-7ea022727d7f?w=800&h=600&fit=crop&q=80"
+    ],
+    "featured": true
+  },
+  {
+    "id": "7",
+    "name": "Commode Oasis",
+    "category": "chambre",
+    "price": 48000,
+    "description": "Commode à 6 tiroirs avec poignées en laiton brossé. Rangement généreux dans un design raffiné et épuré.",
+    "material": "Bois de mangrove, poignées laiton",
+    "dimensions": "120 × 45 × 80 cm",
+    "colors": ["#8B7355","#F5F0E8","#2D2D2D"],
+    "colorNames": ["Noyer","Blanc mat","Noir"],
+    "image": "https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=800&h=600&fit=crop&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=800&h=600&fit=crop&q=80"
+    ],
+    "featured": false
+  },
+  {
+    "id": "8",
+    "name": "Chaise Aurès",
+    "category": "salle-a-manger",
+    "price": 18000,
+    "description": "Chaise de salle à manger au design revisité. Assise confortable en tissu, dossier ergonomique. Vendue par lot de 2.",
+    "material": "Tissu polyvalent, pieds en bois de hêtre",
+    "dimensions": "48 × 55 × 82 cm",
+    "colors": ["#C4B8A0","#2D2D2D","#8B7355"],
+    "colorNames": ["Lin","Noir","Noyer"],
+    "image": "https://images.unsplash.com/photo-1503602642458-2326403e6f2a?w=800&h=600&fit=crop&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1503602642458-2326403e6f2a?w=800&h=600&fit=crop&q=80"
+    ],
+    "featured": true
+  }
+]

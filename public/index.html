@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DARI — Ameublement & Décoration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FAFAF7;--bg-warm:#F5F0E8;--white:#FFF;--card:#FFF;
+  --text:#1A1A1A;--text-sec:#6B6B6B;--text-light:#999;
+  --gold:#B8956A;--gold-light:#D4C5A9;--walnut:#5C4033;--charcoal:#2D2D2D;--cream:#F5F0E8;
+  --border:#E8E4DE;
+  --shadow:0 2px 20px rgba(0,0,0,.06);--shadow-lg:0 8px 40px rgba(0,0,0,.1);
+  --r:8px;--r-lg:16px;--t:all .3s ease;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Inter',-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--fb);border:none;background:none}
+input,select,textarea{font-family:var(--fb)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:var(--t);height:72px}
+.nav.scrolled{border-bottom-color:var(--border);box-shadow:0 1px 12px rgba(0,0,0,.04)}
+.nav-in{max-width:1280px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--fh);font-size:28px;font-weight:700;color:var(--charcoal);letter-spacing:-.5px}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-sec);transition:var(--t);letter-spacing:.3px;text-transform:uppercase}
+.nav-links a:hover{color:var(--text)}
+.burger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
+.burger span{width:24px;height:2px;background:var(--charcoal);transition:var(--t)}
+
+/* HERO */
+.hero{margin-top:72px;position:relative;height:85vh;min-height:550px;max-height:800px;overflow:hidden;background:var(--charcoal)}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c3d1c224?w=1600&h=900&fit=crop&q=80');background-size:cover;background-position:center;opacity:.55;transition:opacity .8s ease}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(45,45,45,.7),rgba(92,64,51,.4))}
+.hero-c{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 32px;max-width:800px;margin:0 auto}
+.hero-tag{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.hero-h{font-family:var(--fh);font-size:clamp(36px,5vw,64px);font-weight:600;color:#fff;line-height:1.15;margin-bottom:20px}
+.hero-h em{font-style:italic;color:var(--gold-light)}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.8);font-weight:300;margin-bottom:40px;max-width:520px;line-height:1.6}
+.hero-cta{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:#fff;font-size:15px;font-weight:600;padding:16px 40px;border-radius:50px;letter-spacing:.5px;transition:var(--t)}
+.hero-cta:hover{background:#a5804f;transform:translateY(-2px);box-shadow:0 6px 20px rgba(184,149,106,.3)}
+.hero-cta svg{width:18px;height:18px}
+
+/* SECTIONS */
+.sec{padding:80px 32px;max-width:1280px;margin:0 auto}
+.sec-hd{text-align:center;margin-bottom:56px}
+.sec-tag{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.sec-title{font-family:var(--fh);font-size:clamp(28px,3.5vw,42px);font-weight:600;color:var(--text)}
+.sec-title em{font-style:italic;color:var(--walnut)}
+
+/* CATEGORIES */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat-card{position:relative;overflow:hidden;border-radius:var(--r-lg);aspect-ratio:3/4;cursor:pointer;transition:var(--t)}
+.cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.cat-card:hover img{transform:scale(1.06)}
+.cat-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
+.cat-name{font-family:var(--fh);font-size:22px;font-weight:600;color:#fff}
+.cat-cnt{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+
+/* PRODUCTS */
+.flt{display:flex;justify-content:center;gap:8px;margin-bottom:48px;flex-wrap:wrap}
+.flt-btn{padding:10px 24px;border-radius:50px;font-size:13px;font-weight:600;color:var(--text-sec);background:var(--white);border:1px solid var(--border);transition:var(--t);letter-spacing:.3px}
+.flt-btn:hover{border-color:var(--gold);color:var(--gold)}
+.flt-btn.on{background:var(--charcoal);color:#fff;border-color:var(--charcoal)}
+
+.p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.p-card{background:var(--card);border-radius:var(--r-lg);overflow:hidden;cursor:pointer;transition:var(--t);border:1px solid transparent}
+.p-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--border)}
+.p-img{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--bg-warm)}
+.p-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.p-card:hover .p-img img{transform:scale(1.05)}
+.p-badge{position:absolute;top:16px;left:16px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:50px;letter-spacing:.5px;text-transform:uppercase}
+.p-quick{position:absolute;bottom:16px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--charcoal);color:#fff;font-size:13px;font-weight:600;padding:10px 28px;border-radius:50px;transition:all .35s ease;opacity:0;white-space:nowrap}
+.p-card:hover .p-quick{transform:translateX(-50%) translateY(0);opacity:1}
+.p-info{padding:20px}
+.p-cat{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:6px}
+.p-name{font-family:var(--fh);font-size:18px;font-weight:600;color:var(--text);margin-bottom:8px}
+.p-price{font-size:18px;font-weight:700;color:var(--charcoal)}
+.p-price span{font-size:14px;font-weight:400;color:var(--text-sec)}
+.p-colors{display:flex;gap:6px;margin-top:10px}
+.p-cd{width:16px;height:16px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1px var(--border)}
+
+/* BANNER */
+.banner{background:var(--bg-warm);padding:80px 32px}
+.banner-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.banner-img{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3}
+.banner-img img{width:100%;height:100%;object-fit:cover}
+.banner-txt{padding:20px 0}
+.banner-txt .sec-tag{text-align:left}
+.b-title{font-family:var(--fh);font-size:clamp(28px,3vw,40px);font-weight:600;line-height:1.25;margin:12px 0 20px}
+.b-desc{font-size:16px;color:var(--text-sec);line-height:1.7;margin-bottom:32px}
+.b-cta{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--charcoal);border-bottom:2px solid var(--gold);padding-bottom:4px;transition:var(--t)}
+.b-cta:hover{color:var(--gold);gap:14px}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px}
+.why-card{text-align:center;padding:40px 28px;background:var(--white);border-radius:var(--r-lg);border:1px solid var(--border);transition:var(--t)}
+.why-card:hover{border-color:var(--gold-light);box-shadow:var(--shadow)}
+.why-icon{width:56px;height:56px;margin:0 auto 20px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.why-icon svg{width:26px;height:26px;color:var(--gold)}
+.why-h{font-family:var(--fh);font-size:20px;font-weight:600;margin-bottom:10px}
+.why-p{font-size:14px;color:var(--text-sec);line-height:1.7}
+
+/* FOOTER */
+.footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding:64px 32px 32px}
+.footer-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.footer-brand .logo{color:#fff;font-size:32px;margin-bottom:16px}
+.footer-brand .logo span{color:var(--gold)}
+.footer-desc{font-size:14px;line-height:1.7;max-width:320px;margin-bottom:24px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;transition:var(--t)}
+.footer-social a:hover{border-color:var(--gold);background:rgba(184,149,106,.15)}
+.footer-social svg{width:18px;height:18px;color:rgba(255,255,255,.6)}
+.footer-col h4{font-family:var(--fh);font-size:16px;font-weight:600;color:#fff;margin-bottom:20px}
+.footer-col a{display:block;font-size:14px;color:rgba(255,255,255,.6);padding:5px 0;transition:var(--t)}
+.footer-col a:hover{color:var(--gold)}
+.footer-btm{max-width:1280px;margin:40px auto 0;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;font-size:13px}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s ease}
+.modal-bg.show{display:flex;opacity:1}
+.modal{background:var(--white);border-radius:var(--r-lg);max-width:960px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:mIn .35s ease}
+@keyframes mIn{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-x{position:absolute;top:16px;right:16px;z-index:5;width:40px;height:40px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:var(--t)}
+.modal-x:hover{background:var(--bg)}
+.modal-x svg{width:18px;height:18px}
+.modal-body{display:grid;grid-template-columns:1fr 1fr}
+.m-gallery{padding:32px;background:var(--bg);border-radius:var(--r-lg) 0 0 var(--r-lg)}
+.gal-main{aspect-ratio:1/1;border-radius:var(--r);overflow:hidden;margin-bottom:16px;background:var(--bg-warm)}
+.gal-main img{width:100%;height:100%;object-fit:cover}
+.gal-thumbs{display:flex;gap:8px;overflow-x:auto}
+.gal-thumb{width:64px;height:64px;flex-shrink:0;border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:var(--t)}
+.gal-thumb.on{border-color:var(--gold)}
+.gal-thumb img{width:100%;height:100%;object-fit:cover}
+
+.m-details{padding:40px 32px;display:flex;flex-direction:column}
+.m-cat{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.m-name{font-family:var(--fh);font-size:28px;font-weight:600;margin-bottom:12px}
+.m-price{font-size:26px;font-weight:700;color:var(--charcoal);margin-bottom:20px}
+.m-price span{font-size:16px;font-weight:400;color:var(--text-sec)}
+.m-desc{font-size:14px;color:var(--text-sec);line-height:1.7;margin-bottom:24px}
+.m-specs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.m-spec{padding:12px;background:var(--bg);border-radius:var(--r);font-size:13px}
+.m-spec label{display:block;font-weight:600;color:var(--text);margin-bottom:4px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.m-spec span{color:var(--text-sec)}
+.m-clr-title{font-size:13px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.m-clrs{display:flex;gap:10px;margin-bottom:28px}
+.clr-opt{width:32px;height:32px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:var(--t);box-shadow:0 0 0 1px var(--border)}
+.clr-opt:hover{transform:scale(1.15)}
+.clr-opt.on{border-color:var(--charcoal);box-shadow:0 0 0 2px var(--white),0 0 0 4px var(--charcoal)}
+.m-qty{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.m-qty label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.qty-c{display:flex;align-items:center;border:1px solid var(--border);border-radius:var(--r)}
+.qty-b{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text);transition:var(--t)}
+.qty-b:hover{background:var(--bg)}
+.qty-v{width:48px;text-align:center;font-size:15px;font-weight:600;border:none;border-left:1px solid var(--border);border-right:1px solid var(--border);height:40px}
+.order-btn{width:100%;padding:16px;background:var(--charcoal);color:#fff;font-size:15px;font-weight:600;border-radius:var(--r);letter-spacing:.3px;transition:var(--t)}
+.order-btn:hover{background:#444}
+
+/* ORDER FORM */
+.of{display:none;margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
+.of.show{display:block}
+.of-title{font-family:var(--fh);font-size:20px;font-weight:600;margin-bottom:20px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-sec);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r);font-size:14px;color:var(--text);background:var(--bg);transition:var(--t)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,149,106,.15)}
+.fg textarea{resize:vertical;min-height:60px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pay-opts{display:flex;gap:10px}
+.pay-opt{flex:1;padding:14px 10px;border:2px solid var(--border);border-radius:var(--r);text-align:center;cursor:pointer;transition:var(--t)}
+.pay-opt:hover{border-color:var(--gold-light)}
+.pay-opt.on{border-color:var(--gold);background:rgba(184,149,106,.08)}
+.pay-opt .pi{font-size:20px;margin-bottom:4px}
+.pay-opt .pn{font-size:12px;font-weight:600}
+.sub-btn{width:100%;padding:16px;background:var(--gold);color:#fff;font-size:15px;font-weight:700;border-radius:var(--r);transition:var(--t);margin-top:8px}
+.sub-btn:hover{background:#a5804f}
+.sub-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* TOAST */
+.toast{position:fixed;top:90px;right:32px;z-index:300;background:var(--charcoal);color:#fff;padding:20px 28px;border-radius:var(--r);box-shadow:var(--shadow-lg);font-size:14px;font-weight:500;transform:translateX(120%);transition:transform .4s ease}
+.toast.show{transform:translateX(0)}
+
+/* MOBILE NAV */
+.m-nav{position:fixed;top:0;right:-300px;z-index:150;width:280px;height:100vh;background:var(--white);box-shadow:-4px 0 20px rgba(0,0,0,.1);padding:80px 32px 32px;transition:right .35s ease}
+.m-nav.open{right:0}
+.m-nav a{display:block;font-size:16px;font-weight:500;padding:14px 0;border-bottom:1px solid var(--border);color:var(--text)}
+.m-nav-x{position:absolute;top:20px;right:20px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--text-sec)}
+.m-ov{position:fixed;inset:0;z-index:140;background:rgba(0,0,0,.3);display:none}
+.m-ov.show{display:block}
+
+/* LOADING */
+.ld{display:flex;justify-content:center;padding:80px 0}
+.sp{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .p-grid{grid-template-columns:repeat(3,1fr)}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-in{grid-template-columns:1fr 1fr;gap:36px}
+  .banner-in{gap:40px}.why-grid{gap:24px}
+}
+@media(max-width:768px){
+  .nav-links{display:none}.burger{display:flex}
+  .hero{height:70vh;min-height:450px}.hero-h{font-size:clamp(28px,6vw,42px)}
+  .sec{padding:56px 20px}
+  .p-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .cat-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .banner-in{grid-template-columns:1fr;gap:28px}
+  .why-grid{grid-template-columns:1fr;gap:16px}
+  .footer-in{grid-template-columns:1fr;gap:28px}
+  .footer-btm{flex-direction:column;gap:8px;text-align:center}
+  .modal-body{grid-template-columns:1fr}
+  .m-gallery{border-radius:var(--r-lg) var(--r-lg) 0 0}
+  .fg-row{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .p-grid{grid-template-columns:1fr}
+  .hero-cta{padding:14px 28px;font-size:14px}
+  .p-info{padding:16px}
+  .m-details{padding:24px 20px}.m-gallery{padding:20px}
+  .m-specs{grid-template-columns:1fr}.pay-opts{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="navbar">
+  <div class="nav-in">
+    <a href="#" class="logo">DARI<span>.</span></a>
+    <div class="nav-links">
+      <a href="#categories">Collections</a>
+      <a href="#products">Nos Pièces</a>
+      <a href="#why">À Propos</a>
+      <a href="#footer">Contact</a>
+    </div>
+    <button class="burger" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="m-ov" id="mOv" onclick="toggleMobile()"></div>
+<div class="m-nav" id="mNav">
+  <button class="m-nav-x" onclick="toggleMobile()">✕</button>
+  <a href="#categories" onclick="toggleMobile()">Collections</a>
+  <a href="#products" onclick="toggleMobile()">Nos Pièces</a>
+  <a href="#why" onclick="toggleMobile()">À Propos</a>
+  <a href="#footer" onclick="toggleMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="hero-tag">Ameublement & Décoration</div>
+    <h1 class="hero-h">Créez l'intérieur<br>de vos <em>rêves</em></h1>
+    <p class="hero-sub">Des meubles pensés pour votre confort, livrés chez vous partout en Algérie. Qualité, style et prix justes.</p>
+    <a href="#products" class="hero-cta">Découvrir la collection <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="sec" id="categories">
+  <div class="sec-hd">
+    <div class="sec-tag">Collections</div>
+    <h2 class="sec-title">Explorez par <em>pièce</em></h2>
+  </div>
+  <div class="cat-grid" id="catGrid"></div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="sec" id="products">
+  <div class="sec-hd">
+    <div class="sec-tag">Nos Pièces</div>
+    <h2 class="sec-title">Meubles qui <em>inspirent</em></h2>
+  </div>
+  <div class="flt" id="flt"></div>
+  <div class="p-grid" id="pGrid"><div class="ld"><div class="sp"></div></div></div>
+</section>
+
+<!-- BANNER -->
+<section class="banner">
+  <div class="banner-in">
+    <div class="banner-img">
+      <img src="https://images.unsplash.com/photo-1616486338856-855b10eafb9?w=800&h=600&fit=crop&q=80" alt="Intérieur chaleureux" onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c3d1c224?w=800&h=600&fit=crop&q=80'">
+    </div>
+    <div class="banner-txt">
+      <div class="sec-tag">Nouvelle Collection</div>
+      <h3 class="b-title">L'art de vivre<br>commence chez vous</h3>
+      <p class="b-desc">Chaque pièce DARI est conçue pour transformer votre espace en un lieu de vie unique. Des matériaux nobles, un design intemporel, et un confort qui vous ressemble.</p>
+      <a href="#products" class="b-cta">Voir la collection <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec" id="why">
+  <div class="sec-hd">
+    <div class="sec-tag">Pourquoi DARI</div>
+    <h2 class="sec-title">Votre maison mérite <em>le meilleur</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
+      <h4 class="why-h">Livraison 58 Wilayas</h4>
+      <p class="why-p">Nous livrons partout en Algérie. Du nord au sud, votre commande arrive directement chez vous.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+      <h4 class="why-h">Qualité Garantie</h4>
+      <p class="why-p">Matériaux premium et finitions soignées. Chaque meuble est inspecté avant l'expédition.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 9V7a5 5 0 00-10 0v2M5 9h14a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7a2 2 0 012-2zm9 5a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+      <h4 class="why-h">Paiement Sécurisé</h4>
+      <p class="why-p">eCCP, BaridiMob ou paiement à la livraison. Choisissez le mode qui vous convient.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer-in">
+    <div class="footer-brand">
+      <div class="logo">DARI<span>.</span></div>
+      <p class="footer-desc">Ameublement & décoration pour chaque maison algérienne. Qualité, design et livraison partout au pays.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <a href="#products" onclick="filterCat('salon')">Salon</a>
+      <a href="#products" onclick="filterCat('chambre')">Chambre</a>
+      <a href="#products" onclick="filterCat('salle-a-manger')">Salle à manger</a>
+      <a href="#products" onclick="filterCat('bureau')">Bureau</a>
+    </div>
+    <div class="footer-col">
+      <h4>Informations</h4>
+      <a href="#why">À propos</a><a href="#why">Livraison</a><a href="#why">Retours</a><a href="#footer">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="/cdn-cgi/l/email-protection#bad9d5d4cedbd9cefadedbc8d394dec0"><span class="__cf_email__" data-cfemail="1c7f7372687d7f685c787d6e75327866">[email&#160;protected]</span></a>
+      <a href="tel:+213000000000">+213 00 00 00 00</a>
+      <a href="#">Algérie</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <span>© 2025 DARI. Tous droits réservés.</span>
+    <span>Fait avec ♥ en Algérie</span>
+  </div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-bg" id="pModal">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <div class="modal-body">
+      <div class="m-gallery">
+        <div class="gal-main"><img id="galMain" src="" alt=""></div>
+        <div class="gal-thumbs" id="galThumbs"></div>
+      </div>
+      <div class="m-details" id="mDetails"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+let allP=[],curCat='all',selP=null,selClr=0,selPay='eccp',qty=1;
+
+const CATS=[
+  {id:'salon',name:'Salon',img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=800&fit=crop&q=80',count:0},
+  {id:'chambre',name:'Chambre',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&h=800&fit=crop&q=80',count:0},
+  {id:'salle-a-manger',name:'Salle à manger',img:'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&h=800&fit=crop&q=80',count:0},
+  {id:'bureau',name:'Bureau',img:'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&h=800&fit=crop&q=80',count:0}
+];
+
+const CAT_NAMES={'salon':'Salon','chambre':'Chambre','salle-a-manger':'Salle à manger','bureau':'Bureau'};
+
+const WILAYAS=['Adrar','Chlef','Laghouat','Oum El Bouaghi','Batna','Béjaïa','Biskra','Béchar','Blida','Bouira','Tamanrasset','Tébessa','Tlemcen','Tiaret','Tizi Ouzou','Alger','Djelfa','Jijel','Sétif','Saïda','Skikda','Sidi Bel Abbès','Annaba','Guelma','Constantine','Médéa','Mostaganem','M\'Sila','Mascara','Ouargla','Oran','El Bayadh','Illizi','Bordj Bou Arréridj','Boumerdès','El Tarf','Tindouf','Tissemsilt','El Oued','Khenchela','Souk Ahras','Tipaza','Mila','Aïn Defla','Naâma','Aïn Témouchent','Ghardaïa','Relizane','Timimoun','Bordj Badji Mokhtar','Ouled Djellal','Béni Abbès','In Salah','In Guezzam','Touggourt','Djanet','El M\'Ghair','El Meniaa'];
+
+function fmtP(p){return new Intl.NumberFormat('fr-DZ').format(p)+' DA'}
+
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20));
+
+function toggleMobile(){
+  document.getElementById('mNav').classList.toggle('open');
+  document.getElementById('mOv').classList.toggle('show');
+}
+
+function renderCats(){
+  CATS.forEach(c=>c.count=allP.filter(p=>p.category===c.id).length);
+  document.getElementById('catGrid').innerHTML=CATS.map(c=>`
+    <div class="cat-card" onclick="filterCat('${c.id}')">
+      <img src="${c.img}" alt="${c.name}" onerror="this.style.background='var(--bg-warm)'">
+      <div class="cat-ov">
+        <div class="cat-name">${c.name}</div>
+        <div class="cat-cnt">${c.count} pièce${c.count!==1?'s':''}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderFlt(){
+  const ids=['all',...CATS.map(c=>c.id)];
+  const names={all:'Tout',...CAT_NAMES};
+  document.getElementById('flt').innerHTML=ids.map(id=>`
+    <button class="flt-btn ${id===curCat?'on':''}" onclick="filterCat('${id}')">${names[id]}</button>`).join('');
+}
+
+function filterCat(cat){
+  curCat=cat;renderFlt();renderProds();
+  document.getElementById('products').scrollIntoView({behavior:'smooth'});
+}
+
+function renderProds(){
+  const f=curCat==='all'?allP:allP.filter(p=>p.category===curCat);
+  const g=document.getElementById('pGrid');
+  if(!f.length){g.innerHTML='<div style="text-align:center;padding:60px;color:var(--text-sec);grid-column:1/-1">Aucun produit dans cette catégorie.</div>';return}
+  g.innerHTML=f.map(p=>{
+    const img=(p.images&&p.images[0])||p.image||'';
+    const colors=p.colors||[];
+    return`<div class="p-card" onclick="openP('${p.id}')">
+      <div class="p-img">
+        <img src="${img}" alt="${p.name}" onerror="this.parentElement.style.background='var(--bg-warm)';this.style.display='none'">
+        ${p.featured?'<div class="p-badge">Populaire</div>':''}
+        <div class="p-quick">Voir les détails</div>
+      </div>
+      <div class="p-info">
+        <div class="p-cat">${CAT_NAMES[p.category]||p.category}</div>
+        <div class="p-name">${p.name}</div>
+        <div class="p-price">${fmtP(p.price)}</div>
+        ${colors.length?`<div class="p-colors">${colors.slice(0,4).map(c=>`<div class="p-cd" style="background:${c}"></div>`).join('')}</div>`:''}
+      </div></div>`}).join('');
+}
+
+function openP(id){
+  const p=allP.find(x=>x.id===id);if(!p)return;
+  selP=p;selClr=0;qty=1;selPay='eccp';
+  const imgs=(p.images&&p.images.length?p.images:[p.image]).filter(Boolean);
+  document.getElementById('galMain').src=imgs[0]||'';
+  document.getElementById('galThumbs').innerHTML=imgs.map((img,i)=>`
+    <div class="gal-thumb ${i===0?'on':''}" onclick="swGal('${img}',this)"><img src="${img}" alt=""></div>`).join('');
+  const colors=p.colors||[],cNames=p.colorNames||[];
+  document.getElementById('mDetails').innerHTML=`
+    <div class="m-cat">${CAT_NAMES[p.category]||p.category}</div>
+    <h2 class="m-name">${p.name}</h2>
+    <div class="m-price">${fmtP(p.price)} <span>TTC</span></div>
+    <p class="m-desc">${p.description||''}</p>
+    <div class="m-specs">
+      ${p.material?`<div class="m-spec"><label>Matière</label><span>${p.material}</span></div>`:''}
+      ${p.dimensions?`<div class="m-spec"><label>Dimensions</label><span>${p.dimensions}</span></div>`:''}
+    </div>
+    ${colors.length?`<div class="m-clr-title">Couleur${colors.length>1?'s':''} : <strong id="selClrName">${cNames[0]||''}</strong></div>
+    <div class="m-clrs">${colors.map((c,i)=>`<div class="clr-opt ${i===0?'on':''}" style="background:${c}" onclick="selColor(${i})" title="${cNames[i]||''}"></div>`).join('')}</div>`:''}
+    <div class="m-qty"><label>Quantité</label><div class="qty-c"><button class="qty-b" onclick="chgQty(-1)">−</button><input class="qty-v" id="qtyIn" type="text" value="1" readonly><button class="qty-b" onclick="chgQty(1)">+</button></div></div>
+    <button class="order-btn" onclick="showOF()">Commander</button>
+    <div class="of" id="ofSect">
+      <div class="of-title">Passer la commande</div>
+      <div class="fg"><label>Nom complet *</label><input type="text" id="oName" placeholder="Votre nom"></div>
+      <div class="fg-row">
+        <div class="fg"><label>Téléphone *</label><input type="tel" id="oPhone" placeholder="05 XX XX XX XX"></div>
+        <div class="fg"><label>Email</label><input type="email" id="oEmail" placeholder="votre@email.com"></div>
+      </div>
+      <div class="fg"><label>Wilaya *</label><select id="oWilaya"><option value="">Choisir votre wilaya</option>${WILAYAS.map(w=>`<option value="${w}">${w}</option>`).join('')}</select></div>
+      <div class="fg"><label>Mode de paiement</label>
+        <div class="pay-opts">
+          <div class="pay-opt on" onclick="selPayment('eccp',this)"><div class="pi">📮</div><div class="pn">eCCP</div></div>
+          <div class="pay-opt" onclick="selPayment('baridimob',this)"><div class="pi">📱</div><div class="pn">BaridiMob</div></div>
+          <div class="pay-opt" onclick="selPayment('livraison',this)"><div class="pi">📦</div><div class="pn">À la livraison</div></div>
+        </div>
+      </div>
+      <div class="fg"><label>Notes (optionnel)</label><textarea id="oNotes" placeholder="Instructions spéciales..."></textarea></div>
+      <button class="sub-btn" id="subBtn" onclick="submitOrder()">Confirmer — ${fmtP(p.price)}</button>
+    </div>`;
+  document.getElementById('pModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function swGal(src,el){document.getElementById('galMain').src=src;document.querySelectorAll('.gal-thumb').forEach(t=>t.classList.remove('on'));el.classList.add('on')}
+function selColor(i){selClr=i;document.querySelectorAll('.clr-opt').forEach((e,j)=>e.classList.toggle('on',j===i));const n=selP.colorNames||[];const el=document.getElementById('selClrName');if(el&&n[i])el.textContent=n[i]}
+function chgQty(d){qty=Math.max(1,Math.min(20,qty+d));document.getElementById('qtyIn').value=qty;const b=document.getElementById('subBtn');if(b&&selP)b.textContent=`Confirmer — ${fmtP(selP.price*qty)}`}
+function selPayment(m,el){selPay=m;document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('on'));el.classList.add('on')}
+function showOF(){document.getElementById('ofSect').classList.add('show');document.getElementById('ofSect').scrollIntoView({behavior:'smooth',block:'nearest'})}
+
+async function submitOrder(){
+  const p=selP;if(!p)return;
+  const name=document.getElementById('oName').value.trim();
+  const phone=document.getElementById('oPhone').value.trim();
+  const email=document.getElementById('oEmail').value.trim();
+  const wilaya=document.getElementById('oWilaya').value;
+  const notes=document.getElementById('oNotes').value.trim();
+  if(!name||!phone){showToast('Veuillez remplir le nom et le téléphone.',false);return}
+  if(!wilaya){showToast('Veuillez sélectionner votre wilaya.',false);return}
+  const btn=document.getElementById('subBtn');btn.disabled=true;btn.textContent='Envoi en cours...';
+  try{
+    const res=await fetch('/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      product:p.name,productId:p.id,customer:name,email,phone,wilaya,paymentMethod:selPay,
+      color:(p.colors&&p.colors[selClr])||'',colorName:(p.colorNames&&p.colorNames[selClr])||'',
+      qty,price:p.price*qty,notes
+    })});
+    const data=await res.json();
+    if(data.success){showToast('✓ Commande confirmée ! Nous vous contacterons bientôt.',true);closeModal()}
+    else showToast(data.error||'Erreur',false);
+  }catch{showToast('Erreur de connexion. Réessayez.',false)}
+  btn.disabled=false;btn.textContent=`Confirmer — ${fmtP(p.price*qty)}`;
+}
+
+function closeModal(){document.getElementById('pModal').classList.remove('show');document.body.style.overflow='';selP=null}
+document.getElementById('pModal').addEventListener('click',e=>{if(e.target.id==='pModal')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+function showToast(msg,ok=true){
+  const t=document.getElementById('toast');t.innerHTML=`<span style="color:${ok?'#5cb85c':'#D4534B'};margin-right:8px">${ok?'✓':'⚠'}</span> ${msg}`;
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);
+}
+
+async function loadProducts(){
+  try{const r=await fetch('/api/products');allP=await r.json()}catch{allP=[]}
+  renderCats();renderFlt();renderProds();
+}
+
+loadProducts();
+</script>
+</body>
+</html>
